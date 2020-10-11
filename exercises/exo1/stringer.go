@@ -1,8 +1,29 @@
-package main
+package exo1
 
-import "fmt"
+import (
+	"fmt"
+)
 
-// Implement types Rectangle, Circle and Shape
+type Shape interface {
+	String() string
+	fmt.Stringer // Permet d'implémenter l'interface String sur les type shape
+}
+
+type Rectangle struct {
+	width, length int
+}
+
+type Circle struct {
+	radius int
+}
+
+func (i Circle) String() string {
+	return fmt.Sprintf("Circle of radius %d", i.radius)
+}
+
+func (i Rectangle) String() string {
+	return fmt.Sprintf("Square of width %d and length %d", i.width, i.length)
+}
 
 func main() {
 	r := &Rectangle{2, 3}
@@ -12,8 +33,6 @@ func main() {
 
 	for _, s := range shapes {
 		fmt.Println(s)
-		// Expected output:
-		// Square of width 2 and length 3
-		// Circle of radius 5
 	}
+
 }
